@@ -1,60 +1,25 @@
 #include <iostream>
 using namespace std;
 
-// 判断是否是二进制
-bool isBinary(const char* str) {
-    while (*str != '\0') {
-        if (*str != '0' && *str != '1') {
-            return false;
-        }
-        ++str;
-    }
-    return true;
-}
-
-// 判断是否是八进制
-bool isOctal(const char* str) {
-    while (*str != '\0') {
-        if (!isdigit(*str) || *str >= '8') {
-            return false;
-        }
-        ++str;
-    }
-    return true;
-}
-
-// 判断是否是十进制
-bool isDecimal(const char* str) {
-    while (*str != '\0') {
-        if (!isdigit(*str)) {
-            return false;
-        }
-        ++str;
-    }
-    return true;
-}
-
-// 判断是否是十六进制
-bool isHexadecimal(const char* str) {
-    while (*str != '\0') {
-        if (!isxdigit(*str)) {
-            return false;
-        }
-        ++str;
-    }
-    return true;
-}
-
 int main() {
-    int N;
-    cin >> N;
+    int n = 0;
+    cin >> n; // 输入整数n，表示需要判断的数的个数
 
-    for (int i = 0; i < N; ++i) {
-        char num[11];
-        cin >> num;
+    for (int i = 0; i < n; i++) {
+        char str[11]; // 定义一个长度为11的字符数组，用来存储输入的字符串
+        cin >> str; // 输入需要判断的字符串
 
-        // 输出四个进制判断的结果
-        cout << isBinary(num) << " " << isOctal(num) << " " << isDecimal(num) << " " << isHexadecimal(num) << endl;
+        char max = '0'; // 初始化最大字符为'0'
+
+        // 遍历字符串，找到最大的字符
+        for (int i = 0; str[i] != '\0'; i++) {
+            if (str[i] > max) {
+                max = str[i];
+            }
+        }
+
+        // 判断最大字符对应的进制特点，输出结果
+        cout << (max <= '1') << " " << (max <= '7') << " " << (max <= '9') << " " << (max <= 'F') << endl;
     }
 
     return 0;
